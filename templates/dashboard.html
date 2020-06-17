@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{url_for('static',filename='img/apple-icon.png.png')}}">
+    <link rel="icon " type="image/png " href="{{url_for( 'static',filename='img/favicon.png' )}} ">
+    <title>
+        Dashboard-Network Monitor
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800 " rel="stylesheet " />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css " rel="stylesheet ">
+    <!-- Nucleo Icons -->
+    <link href="{{url_for( 'static',filename='css/nucleo-icons.css' )}} " rel="stylesheet " />
+    <!-- CSS Files -->
+    <link href="{{url_for( 'static',filename='css/black-dashboard.css' )}} " rel="stylesheet " />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="{{url_for( 'static',filename='demo/demo.css' )}} " rel="stylesheet " />
+    <link rel="stylesheet " href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css " integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin=" anonymous " />
+    <link rel="stylesheet " href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css " integrity="sha256-IvM9nJf/b5l2RoebiFno92E5ONttVyaEEsdemDC6iQA=" crossorigin=" anonymous " />
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+
+
+
+</head>
+
+<body class=" ">
+    <div class="wrapper ">
+        <div class="sidebar ">
+            <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red "
+    -->
+            <div class="sidebar-wrapper ">
+                <div class="logo ">
+                    <a href="javascript:void(0) " class="simple-text logo-mini ">
+    NM
+</a>
+                    <a href="javascript:void(0) " class="simple-text logo-normal ">
+Network Monitor
+</a>
+                </div>
+                <ul class="nav ">
+                    <li>
+                        <a href="{{url_for( 'home')}} ">
+                            <i class="tim-icons icon-atom "></i>
+                            <p>Home</p>
+                        </a>
+                    </li>
+                    <li class="active ">
+                        <a href="{{url_for( 'dashboard')}} ">
+                            <i class="tim-icons icon-chart-pie-36 "></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{url_for( 'team')}} ">
+                            <i class="tim-icons icon-single-02 "></i>
+                            <p>Meet the Team</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url_for( 'article')}} ">
+                            <i class="tim-icons icon-paper "></i>
+                            <p>Research Article </Article>
+                            </p>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel ">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent ">
+                <div class="container-fluid ">
+                    <div class="navbar-wrapper ">
+                        <div class="navbar-toggle d-inline ">
+                            <button type="button " class="navbar-toggler ">
+            <span class="navbar-toggler-bar bar1 "></span>
+            <span class="navbar-toggler-bar bar2 "></span>
+            <span class="navbar-toggler-bar bar3 "></span>
+            </button>
+                        </div>
+                        <a class="navbar-brand " href="javascript:void(0) ">Dashboard</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse " id="navigation ">
+                        <ul class="navbar-nav ml-auto ">
+
+                            <li class="dropdown nav-item ">
+                                <a href="# " class="dropdown-toggle nav-link " data-toggle="dropdown ">
+                                    <div class="photo ">
+                                        <img src="../static/img/anime3.png " alt="Profile Photo ">
+                                    </div>
+
+
+                                </a>
+
+                            </li>
+                            <li class="separator d-lg-none "></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="modal modal-search fade " id="searchModal " tabindex="-1 " role="dialog " aria-labelledby="searchModal " aria-hidden="true ">
+                <div class="modal-dialog " role="document ">
+                    <div class="modal-content ">
+                        <div class="modal-header ">
+                            <input type="text " class="form-control " id="inlineFormInputGroup " placeholder="SEARCH ">
+                            <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
+            <i class="tim-icons icon-simple-remove "></i>
+            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Navbar -->
+            <div class="content ">
+                <div class="row ">
+                    <div class="col-12 ">
+                        <div class="card card-chart ">
+                            <div class="card-header ">
+                                <div class="row ">
+                                    <div class="col-sm-6 text-left ">
+                                        <h5 class="card-category ">Time vs</h5>
+                                        <h2 class="card-title ">Network Requests</h2>
+                                    </div>
+                                    <div class="col-sm-6 ">
+                                        <div class="btn-group btn-group-toggle float-right " data-toggle="buttons ">
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body ">
+                                <div class="chart-area ">
+                                    <div id="mainLineChart" style="height: 230px;width:100;"></div>
+                                    <script>
+                                        new Morris.Line({
+                                            // ID of the element in which to draw the chart.
+                                            element: 'mainLineChart',
+                                            // Chart data records -- each entry in this array corresponds to a point on
+                                            // the chart.
+                                            data: [{
+                                                year: '2008',
+                                                value: 20
+                                            }, {
+                                                year: '2007',
+                                                value: 35
+                                            }, {
+                                                year: '2009',
+                                                value: 10
+                                            }, {
+                                                year: '2010',
+                                                value: 5
+                                            }, {
+                                                year: '2011',
+                                                value: 5
+                                            }, {
+                                                year: '2012',
+                                                value: 20
+                                            }],
+                                            // The name of the data record attribute that contains x-values.
+                                            xkey: 'year',
+                                            // A list of names of data record attributes that contain y-values.
+                                            ykeys: ['value'],
+                                            // Labels for the ykeys -- will be displayed when you hover over the
+                                            // chart.
+                                            labels: ['Value'],
+                                            lineColors: ['#7534a8']
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" row ">
+                    <div class="col-lg-4 ">
+                        <div class="card card-chart ">
+                            <div class="card-header ">
+                                <!-- <h5 class="card-category ">Total Shipments</h5> -->
+                                <h3 class="card-title "><i class="tim-icons icon-cloud-upload-94 text-primary "></i> Unique IP Addresses</h3>
+                            </div>
+                            <div class="card-body ">
+                                <div class="chart-area " id="uniquePackets">
+                                </div>
+                                <script>
+                                    new Morris.Line({
+                                        // ID of the element in which to draw the chart.
+                                        element: 'uniquePackets',
+                                        // Chart data records -- each entry in this array corresponds to a point on
+                                        // the chart.
+                                        data: [{
+                                            year: '2008',
+                                            value: 20
+                                        }, {
+                                            year: '2007',
+                                            value: 35
+                                        }, {
+                                            year: '2009',
+                                            value: 10
+                                        }, {
+                                            year: '2010',
+                                            value: 5
+                                        }, {
+                                            year: '2011',
+                                            value: 5
+                                        }, {
+                                            year: '2012',
+                                            value: 20
+                                        }],
+                                        // The name of the data record attribute that contains x-values.
+                                        xkey: 'year',
+                                        // A list of names of data record attributes that contain y-values.
+                                        ykeys: ['value'],
+                                        // Labels for the ykeys -- will be displayed when you hover over the
+                                        // chart.
+                                        labels: ['Value'],
+                                        lineColors: ['#7534a8']
+                                    });
+                                </script>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 ">
+                        <div class="card card-chart ">
+                            <div class="card-header ">
+                                <!-- <h5 class="card-category ">Types of</h5> -->
+                                <h3 class="card-title "><i class="tim-icons icon-chart-bar-32 text-info "></i> Network Protocols</h3>
+                            </div>
+                            <div class="card-body ">
+                                <div class="chart-area " id="barChart">
+
+                                </div>
+                                <script>
+                                    new Morris.Bar({
+                                        // ID of the element in which to draw the chart.
+                                        element: 'barChart',
+                                        // Chart data records -- each entry in this array corresponds to a point on
+                                        // the chart.
+                                        data: [{
+                                            year: '2008',
+                                            value: 20,
+
+                                        }, {
+                                            year: '2007',
+                                            value: 35,
+
+                                        }, {
+                                            year: '2009',
+                                            value: 10,
+
+                                        }, {
+                                            year: '2010',
+                                            value: 5,
+
+                                        }, {
+                                            year: '2011',
+                                            value: 5,
+
+                                        }, {
+                                            year: '2012',
+                                            value: 20,
+
+                                        }],
+                                        // The name of the data record attribute that contains x-values.
+                                        xkey: 'year',
+                                        // A list of names of data record attributes that contain y-values.
+                                        ykeys: ['value'],
+                                        // Labels for the ykeys -- will be displayed when you hover over the
+                                        // chart.
+                                        labels: ['Value'],
+                                        barColors: ["#1d8cf8"]
+
+
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 ">
+                        <div class="card card-chart ">
+                            <div class="card-header ">
+
+                                <h3 class="card-title "><i class="tim-icons icon-chart-pie-36 text-success "></i> Packet Size</h3>
+                            </div>
+                            <div class="card-body ">
+                                <div class="chart-area " id="donutChart">
+                                </div>
+                                <script>
+                                    new Morris.Donut({
+                                        // ID of the element in which to draw the chart.
+                                        element: 'donutChart',
+                                        // Chart data records -- each entry in this array corresponds to a point on
+                                        // the chart.
+                                        data: [{
+                                            label: '0-200',
+                                            value: 20,
+                                            color: "#552586"
+                                        }, {
+                                            label: '201-400',
+                                            value: 35,
+                                            color: "#6A359C"
+                                        }, {
+                                            label: '401-600',
+                                            value: 10,
+                                            color: "#804FB3"
+                                        }, {
+                                            label: '601-800',
+                                            value: 5,
+                                            color: "#9969C7"
+                                        }, {
+                                            label: '801-1000',
+                                            value: 5,
+                                            color: "#B589D6"
+                                        }, {
+                                            label: '1001-1200',
+                                            value: 20,
+                                            color: "#6A359C"
+                                        }],
+                                        // The name of the data record attribute that contains x-values.
+                                        xkey: 'year',
+                                        // A list of names of data record attributes that contain y-values.
+                                        ykeys: ['value'],
+                                        // Labels for the ykeys -- will be displayed when you hover over the
+                                        // chart.
+                                        labels: ['Value'],
+                                        labelColor: '#FFF'
+
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 ">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <h4 class="card-title ">Live Network Traffic</h4>
+                        </div>
+                        <div class="card-body ">
+                            <div class="table-responsive ">
+                                <table class="table tablesorter " id=" ">
+                                    <thead class=" text-primary ">
+                                        <tr>
+                                            <th>
+                                                IP Address
+                                            </th>
+                                            <th>
+                                                Destination IP Address
+                                            </th>
+                                            <th>
+                                                Country
+                                            </th>
+                                            <th class="text-center ">
+                                                Type of Packet
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in data%}
+                                        <tr>
+                                            <td>
+                                                {{item.ipaddr}}
+                                            </td>
+                                            <td>
+                                                {{item.dest_ip}}
+                                            </td>
+                                            <td>
+                                                {{item.country}}
+                                            </td>
+                                            <td class="text-center ">
+                                                $36,738
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#layerdetails">Layer Details</button>
+                                                <div id="layerdetails" class="collapse">
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer ">
+            <div class="container-fluid ">
+
+                <div class="copyright ">
+                    ©
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> Made with <i class="tim-icons icon-heart-2 "></i> by
+                    <a href="javascript:void(0) " target="_blank ">AAAVAB</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    </div>
+
+    <!--   Core JS Files   -->
+    <script src="{{url_for( 'static',filename='js/core/jquery.min.js' )}} "></script>
+    <script src="{{url_for( 'static',filename='js/core/popper.min.js' )}} "></script>
+    <script src="{{url_for( 'static',filename='js/core/bootstrap.min.js' )}} "></script>
+    <script src="{{url_for( 'static',filename='js/plugins/perfect-scrollbar.jquery.min.js' )}} "></script>
+    <!--  Google Maps Plugin    -->
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE "></script>
+
+
+
+    <script src="{{url_for( 'static',filename='js/black-dashboard.min.js' ) }} "></script>
+
+
+
+
+    <script src=" https://cdn.trackjs.com/agent/v3/latest/t.js "></script>
+    <script>
+        window.TrackJS &&
+            TrackJS.install({
+                token: "ee6fab19c5a04ac1a32a645abde4613a ",
+                application: "black-dashboard-free "
+            });
+    </script>
+</body>
+
+</html>
