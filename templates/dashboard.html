@@ -154,31 +154,28 @@ Network Monitor
                                             // Chart data records -- each entry in this array corresponds to a point on
                                             // the chart.
                                             data: [{
-                                                year: '2008',
-                                                value: 20
+                                                month: '2020-01',
+                                                value: 350
                                             }, {
-                                                year: '2007',
-                                                value: 35
+                                                month: '2020-02',
+                                                value: 440
                                             }, {
-                                                year: '2009',
-                                                value: 10
+                                                month: '2020-03',
+                                                value: 440
                                             }, {
-                                                year: '2010',
-                                                value: 5
+                                                month: '2020-04',
+                                                value: 405
                                             }, {
-                                                year: '2011',
-                                                value: 5
-                                            }, {
-                                                year: '2012',
-                                                value: 20
-                                            }],
-                                            // The name of the data record attribute that contains x-values.
-                                            xkey: 'year',
-                                            // A list of names of data record attributes that contain y-values.
+                                                month: '2020-05',
+                                                value: 390
+                                            }, ],
+                                            // The name of the data record attribute that contains x-req_nos.
+                                            xkey: 'month',
+                                            // A list of names of data record attributes that contain y-req_nos.
                                             ykeys: ['value'],
                                             // Labels for the ykeys -- will be displayed when you hover over the
                                             // chart.
-                                            labels: ['Value'],
+                                            labels: ['Values'],
                                             lineColors: ['#7534a8']
                                         });
                                     </script>
@@ -205,31 +202,32 @@ Network Monitor
                                         // the chart.
                                         data: [{
                                             year: '2008',
-                                            value: 20
+                                            req_no: 20
                                         }, {
                                             year: '2007',
-                                            value: 35
+                                            req_no: 35
                                         }, {
                                             year: '2009',
-                                            value: 10
+                                            req_no: 10
                                         }, {
                                             year: '2010',
-                                            value: 5
+                                            req_no: 5
                                         }, {
                                             year: '2011',
-                                            value: 5
+                                            req_no: 5
                                         }, {
                                             year: '2012',
-                                            value: 20
+                                            req_no: 20
                                         }],
-                                        // The name of the data record attribute that contains x-values.
+                                        // The name of the data record attribute that contains x-req_nos.
                                         xkey: 'year',
-                                        // A list of names of data record attributes that contain y-values.
-                                        ykeys: ['value'],
+                                        // A list of names of data record attributes that contain y-req_nos.
+                                        ykeys: ['req_no'],
                                         // Labels for the ykeys -- will be displayed when you hover over the
                                         // chart.
                                         labels: ['Value'],
-                                        lineColors: ['#7534a8']
+                                        lineColors: ['#7534a8'],
+                                        xLabelMargin: 10
                                     });
                                 </script>
 
@@ -254,38 +252,36 @@ Network Monitor
                                         // Chart data records -- each entry in this array corresponds to a point on
                                         // the chart.
                                         data: [{
-                                            year: '2008',
-                                            value: 20,
+                                            protocol: 'TLS',
+                                            value: 85,
 
                                         }, {
-                                            year: '2007',
-                                            value: 35,
+                                            protocol: 'TCP',
+                                            value: 300,
 
                                         }, {
-                                            year: '2009',
+                                            protocol: 'IP',
+                                            value: 120,
+
+                                        }, {
+                                            protocol: 'SSL',
+                                            value: 30,
+
+                                        }, {
+                                            protocol: 'FTP',
                                             value: 10,
-
-                                        }, {
-                                            year: '2010',
-                                            value: 5,
-
-                                        }, {
-                                            year: '2011',
-                                            value: 5,
-
-                                        }, {
-                                            year: '2012',
-                                            value: 20,
 
                                         }],
                                         // The name of the data record attribute that contains x-values.
-                                        xkey: 'year',
+                                        xkey: 'protocol',
                                         // A list of names of data record attributes that contain y-values.
                                         ykeys: ['value'],
                                         // Labels for the ykeys -- will be displayed when you hover over the
                                         // chart.
                                         labels: ['Value'],
-                                        barColors: ["#1d8cf8"]
+
+                                        barColors: ["#1d8cf8"],
+                                        xLabelMargin: 10
 
 
                                     });
@@ -389,7 +385,7 @@ Network Monitor
                                                 $36,738
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#layerdetails">Layer Details</button>
+                                                <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#layerdetails">Layer Details</button>
                                                 <div id="layerdetails" class="collapse">
                                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                                 </div>
