@@ -242,32 +242,14 @@ Network Monitor
 
                                 </div>
                                 <script>
+                                    var protocols = JSON.parse({{ protocols | tojson }})
+                                    console.log(protocols)
                                     new Morris.Bar({
                                         // ID of the element in which to draw the chart.
                                         element: 'barChart',
                                         // Chart data records -- each entry in this array corresponds to a point on
                                         // the chart.
-                                        data: [{
-                                            protocol: 'TLS',
-                                            value: 85,
-
-                                        }, {
-                                            protocol: 'TCP',
-                                            value: 300,
-
-                                        }, {
-                                            protocol: 'IP',
-                                            value: 120,
-
-                                        }, {
-                                            protocol: 'SSL',
-                                            value: 30,
-
-                                        }, {
-                                            protocol: 'FTP',
-                                            value: 10,
-
-                                        }],
+                                        data: protocols,
                                         // The name of the data record attribute that contains x-values.
                                         xkey: 'protocol',
                                         // A list of names of data record attributes that contain y-values.
@@ -352,13 +334,10 @@ Network Monitor
                                     <thead class=" text-primary ">
                                         <tr>
                                             <th>
-                                                IP Address
+                                                Source IP Address
                                             </th>
                                             <th>
                                                 Destination IP Address
-                                            </th>
-                                            <th>
-                                                Country
                                             </th>
                                             <th class="text-center ">
                                                 Type of Packet
@@ -366,24 +345,21 @@ Network Monitor
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for item in data%}
+                                        {% for item in packets %}
                                         <tr>
                                             <td>
-                                                {{item.ipaddr}}
+                                                {{ item.ip.src }}
                                             </td>
                                             <td>
-                                                {{item.dest_ip}}
-                                            </td>
-                                            <td>
-                                                {{item.country}}
+                                                {{ item.ip.dst }}
                                             </td>
                                             <td class="text-center ">
-                                                $36,738
+                                                {{ item.transport_layer }}
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#layerdetails">Layer Details</button>
-                                                <div id="layerdetails" class="collapse">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                                <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#layerdetails-{{ loop.index0 }}">Layer Details</button>
+                                                <div id="layerdetails-{{ loop.index0 }}" class="collapse">
+                                                    {{ item.__str__() | replace('\n','\n\n') }}
                                                 </div>
                                             </td>
                                         </tr>
