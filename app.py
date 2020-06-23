@@ -18,7 +18,7 @@ def home():
 @app.route("/dashboard")
 def dashboard():
     capture = LiveCapture(interface=app.config['NETWORK_INTERFACE'])
-    capture.sniff(packet_count=100)
+    capture.sniff(packet_count=1000)
     packet_protocols = {}
     packets = []
 

@@ -282,6 +282,9 @@ Network Monitor
                                     <thead class=" text-primary ">
                                         <tr>
                                             <th>
+                                                S.No.
+                                            </th>
+                                            <th>
                                                 Source IP Address
                                             </th>
                                             <th>
@@ -296,6 +299,9 @@ Network Monitor
                                         {% for item in packets %}
                                         <tr>
                                             <td>
+                                                {{ loop.index }}
+                                            </td>
+                                            <td>
                                                 {{ item.ip.src }}
                                             </td>
                                             <td>
@@ -305,7 +311,7 @@ Network Monitor
                                                 {{ item.highest_layer }}
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#layerdetails-{{ loop.index0 }}">Layer Details</button>
+                                                <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#layerdetails-{{ loop.index0 }}">Raw Packet Data</button>
                                                 <div id="layerdetails-{{ loop.index0 }}" class="collapse">
                                                     {{ item.__str__()  }}
                                                 </div>
